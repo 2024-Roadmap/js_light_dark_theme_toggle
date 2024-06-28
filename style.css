@@ -10,8 +10,10 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  transition: var(--transition-delay);
   background-color: var(--background-color);
   color: var(--text-color);
+  overflow: hidden;
 }
 
 body.dark {
@@ -40,7 +42,51 @@ body.dark {
   transform: scale(1);
 }
 
+.theme-toggle-button .icon {
+  margin-right: 0.5rem;
+}
+
 .theme-toggle-button:hover,
 .theme-toggle-button:focus {
   transform: scale(1.1);
+}
+
+.sun-moon-container {
+  --rotation: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  top: 0;
+  height: 200vmin;
+  transform: rotate(calc(var(--rotation) * 1deg));
+  transition: transform var(--transition-delay);
+}
+
+.sun, .moon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  transition: opacity, fill, var(--transition-delay);
+  fill: var(--accent-color)
+}
+
+.sun {
+  top: 5%;
+  opacity: 1;
+}
+
+.dark .sun {
+  opacity: 0;
+}
+
+.moon {
+  bottom: 5%;
+  opacity: 0;
+  transform: rotate(180deg);
+}
+
+.dark .moon {
+  opacity: 1;
 }
